@@ -1,0 +1,29 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator zod {
+    provider = "prisma-zod-generator"
+}
+
+model User {
+    id            String   @id @default(uuid())
+    name          String?  @db.VarChar(50)
+    username      String   @unique @db.VarChar(30)
+    email         String   @unique
+    password      String   @db.VarChar(120)
+    cpf           String   @unique
+    cellphone     String   @unique
+    birth_date    DateTime @db.Date
+    bio           String   @db.Text
+    is_advertiser Boolean  @default(false)
+    created_at    DateTime @default(now())
+    updated_at    DateTime @default(now()) @updatedAt
+
+    @@map("user")
+}
