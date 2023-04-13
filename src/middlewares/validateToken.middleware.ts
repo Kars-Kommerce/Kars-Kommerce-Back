@@ -13,6 +13,7 @@ const validateTokenMiddleware = (
 
   const token = authorization.split(" ");
 
+
   return jwt.verify(token[1], process.env.SECRET_KEY!, (err, decoded) => {
     if (err) return;
 
