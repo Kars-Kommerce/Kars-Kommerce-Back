@@ -5,6 +5,7 @@ import createAdController from "../controllers/ads/createAd.controller";
 import listAdsController from "../controllers/ads/listAds.controller";
 import updateAdController from "../controllers/ads/updateAd.controller";
 import deleteAdController from "../controllers/ads/deleteAd.controller";
+import isAdOwnerMiddleware from "../middlewares/isAdOwner.middleware";
 
 
 
@@ -26,6 +27,7 @@ adsRoutes.get(
 adsRoutes.patch(
   "/:id",
   validateTokenMiddleware,
+  isAdOwnerMiddleware,
   validateSchemasMiddleware(updateAdvertisementRequestSchema),
   updateAdController,
 );
@@ -33,6 +35,7 @@ adsRoutes.patch(
 adsRoutes.delete(
   "/:id",
   validateTokenMiddleware,
+  isAdOwnerMiddleware,
   deleteAdController
 );
 export default adsRoutes;
