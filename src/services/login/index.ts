@@ -22,7 +22,7 @@ const loginService = async ({ email, password }: ILoginProps) => {
     subject: user.id,
   });
 
-  return `Bearer ${token}`;
+  return `${token}`;
 };
 
 export default loginService;

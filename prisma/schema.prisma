@@ -20,6 +20,29 @@ model User {
     is_advertiser Boolean  @default(false)
     created_at    DateTime @default(now())
     updated_at    DateTime @default(now()) @updatedAt
+    ads           Advertisement[]
 
     @@map("user")
+}
+
+model Advertisement {
+    id            Int   @id @default(autoincrement())
+    title         String  @db.VarChar(100)
+    description   String @db.VarChar(1000)
+    model         String @db.VarChar(100)
+    brand         String @db.VarChar(20)
+    year          Int 
+    fuel          Int
+    fuel_type     String @db.VarChar(20)
+    is_active     Boolean
+    price         Int  
+    created_at    DateTime @default(now())
+    updated_at    DateTime @default(now()) @updatedAt
+    authorId      String 
+    author        User    @relation(fields: [authorId], references: [id])
+
+
+   
+
+    @@map("advertisement")
 }
