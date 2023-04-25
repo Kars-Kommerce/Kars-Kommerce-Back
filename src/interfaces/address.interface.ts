@@ -1,4 +1,4 @@
-export interface IAdressRequestProps {
+export interface IAddressRequestProps {
   cep: number;
   state: string;
   city: string;
@@ -6,17 +6,17 @@ export interface IAdressRequestProps {
   complement: string;
 }
 
-export interface IAdressResponseProps {
+export interface IAddressResponseProps {
   id: number;
   cep: number;
   state: string;
   city: string;
   street: string;
   complement: string;
-  authorId: string;
+  userId: string;
   created_at: Date;
   updated_at: Date;
 }
 
-export interface IAdressUpdateRequestProps
-  extends Partial<IAdressRequestProps> {}
+export interface IAddressUpdateRequestProps
+  extends Partial<IAddressRequestProps> {}

@@ -21,7 +21,7 @@ model User {
     created_at    DateTime @default(now())
     updated_at    DateTime @default(now()) @updatedAt
     ads           Advertisement[]
-    adress        Adress[]
+    address       Address?
 
     @@map("user")
 }
@@ -48,7 +48,7 @@ model Advertisement {
     @@map("advertisement")
 }
 
-model Adress {
+model Address {
     id            Int   @id @default(autoincrement())
     cep           String  @db.VarChar(100)
     state         String @db.VarChar(20)
@@ -58,8 +58,8 @@ model Adress {
     complement    String @db.VarChar(100)
     created_at    DateTime @default(now())
     updated_at    DateTime @default(now()) @updatedAt
-    userId        String 
-    user          User    @relation(fields: [authorId], references: [id])
+    userId        String @unique
+    user          User @relation(fields: [userId], references: [id])
 
-    @@map("adress")
+    @@map("address")
 }

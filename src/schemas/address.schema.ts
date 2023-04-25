@@ -1,10 +1,10 @@
 import { z } from "zod";
 import {
-  IAdressRequestProps,
-  IAdressResponseProps,
-} from "../interfaces/adress.interface";
+  IAddressRequestProps,
+  IAddressResponseProps,
+} from "../interfaces/address.interface";
 
-const createAdressRequestSchema = z.object({
+const createAddressRequestSchema = z.object({
   cep: z.number().max(8, "Deve conter no máximo 8 caracteres"),
   state: z.string().max(20, "Deve conter no máximo 20 caracteres"),
   city: z.string().max(50, "Deve conter no máximo 50 caracteres"),
@@ -12,7 +12,7 @@ const createAdressRequestSchema = z.object({
   complement: z.string().max(100, "Deve conter no máximo 100 caracteres"),
 });
 
-export const createListAdressResponseSchema = z.object({
+export const createListAddressResponseSchema = z.object({
   id: z.number().int(),
   cep: z.number(),
   state: z.string(),
@@ -24,9 +24,9 @@ export const createListAdressResponseSchema = z.object({
   updated_at: z.date(),
 });
 
-export const retrieveAdresssSchema: z.ZodSchema<IAdressResponseProps[]> =
-  z.array(createListAdressResponseSchema);
+export const retrieveAddresssSchema: z.ZodSchema<IAddressResponseProps[]> =
+  z.array(createListAddressResponseSchema);
 
-export const updateAdressRequestSchema = createAdressRequestSchema.partial();
+export const updateAddressRequestSchema = createAddressRequestSchema.partial();
 
-export default createAdressRequestSchema;
+export default createAddressRequestSchema;
