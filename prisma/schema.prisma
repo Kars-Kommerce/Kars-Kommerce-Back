@@ -21,6 +21,7 @@ model User {
     created_at    DateTime @default(now())
     updated_at    DateTime @default(now()) @updatedAt
     ads           Advertisement[]
+    adress        Adress[]
 
     @@map("user")
 }
@@ -45,4 +46,20 @@ model Advertisement {
    
 
     @@map("advertisement")
+}
+
+model Adress {
+    id            Int   @id @default(autoincrement())
+    cep           String  @db.VarChar(100)
+    state         String @db.VarChar(20)
+    city          String @db.VarChar(50)
+    street        String @db.VarChar(100)
+    number        Int 
+    complement    String @db.VarChar(100)
+    created_at    DateTime @default(now())
+    updated_at    DateTime @default(now()) @updatedAt
+    userId        String 
+    user          User    @relation(fields: [authorId], references: [id])
+
+    @@map("adress")
 }
