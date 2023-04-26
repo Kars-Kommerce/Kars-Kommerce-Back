@@ -1,17 +1,19 @@
 export interface IAddressRequestProps {
-  cep: number;
+  cep: string;
   state: string;
   city: string;
   street: string;
+  number: string;
   complement: string;
 }
 
 export interface IAddressResponseProps {
   id: number;
-  cep: number;
+  cep: string;
   state: string;
   city: string;
   street: string;
+  number: string;
   complement: string;
   userId: string;
   created_at: Date;

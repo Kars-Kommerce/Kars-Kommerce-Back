@@ -8,6 +8,7 @@ import createAddressRequestSchema, {
 } from "../schemas/address.schema";
 import isAddressOwnerMiddleware from "../middlewares/isAddressOwner.middleware";
 import createAddressController from "../controllers/address/createAddress.comtroller";
+import listAddressController from "../controllers/address/listAddress.controller";
 
 const addressRoutes = Router();
 
@@ -18,7 +19,7 @@ addressRoutes.post(
   createAddressController
 );
 
-addressRoutes.get("");
+addressRoutes.get("", listAddressController);
 
 addressRoutes.patch(
   "/:id",

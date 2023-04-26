@@ -24,7 +24,7 @@ const createUserRequestSchema = z.object({
     )
     .transform((val) => moment(val, "DD-MM-YYYY").toISOString())
     .refine((val) => moment(val).isValid(), "Insira uma data válida"),
-  bio: z.string().max(500).optional(),
+  bio: z.string().max(500).nullable(),
   is_advertiser: z.boolean().optional(),
 });
 
@@ -36,7 +36,7 @@ export const createListUserResponseSchema = z.object({
   cpf: z.string(),
   cellphone: z.string(),
   birth_date: z.date(),
-  bio: z.string().optional(),
+  bio: z.string().nullable(),
   is_advertiser: z.boolean(),
   created_at: z.date(),
   updated_at: z.date(),
