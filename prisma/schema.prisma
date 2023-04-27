@@ -16,11 +16,12 @@ model User {
     cpf           String   @unique @db.VarChar(11)
     cellphone     String   @unique @db.VarChar(11)
     birth_date    DateTime @db.Date
-    bio           String?  @db.Text
+    bio           String?  @db.VarChar(255)
     is_advertiser Boolean  @default(false)
     created_at    DateTime @default(now())
     updated_at    DateTime @default(now()) @updatedAt
     ads           Advertisement[]
+    address       Address?
 
     @@map("user")
 }
@@ -45,4 +46,20 @@ model Advertisement {
    
 
     @@map("advertisement")
+}
+
+model Address {
+    id            Int      @id @default(autoincrement())
+    cep           String   
+    state         String   @db.VarChar(20)
+    city          String   @db.VarChar(50)
+    street        String   @db.VarChar(100)
+    number        String      
+    complement    String   @db.VarChar(100)
+    created_at    DateTime @default(now())
+    updated_at    DateTime @default(now()) @updatedAt
+    userId        String   @unique
+    user          User     @relation(fields: [userId], references: [id])
+
+    @@map("address")
 }

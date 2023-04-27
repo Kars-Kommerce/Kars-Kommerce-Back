@@ -5,7 +5,7 @@ interface IUserProps {
   cpf: string;
   cellphone: string;
   birth_date: string | Date;
-  bio?: string | undefined;
+  bio?: string | null;
   is_advertiser: boolean;
 }
 
