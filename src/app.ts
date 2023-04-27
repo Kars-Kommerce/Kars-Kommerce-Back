@@ -6,13 +6,16 @@ import usersRoutes from "./routers/users.routes";
 import loginRoute from "./routers/login.route";
 import "dotenv/config";
 import adsRoutes from "./routers/ads.route";
+import cors from "cors";
 import addressRoutes from "./routers/address.route";
+
 
 export const prisma: PrismaClient = new PrismaClient();
 
 const app = express();
 app.use(json());
 
+app.use(cors());
 app.use("/users", usersRoutes);
 app.use("/login", loginRoute);
 app.use("/ads", adsRoutes);

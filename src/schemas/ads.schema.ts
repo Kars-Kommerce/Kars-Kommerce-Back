@@ -18,6 +18,12 @@ const createAdvertisementRequestSchema = z.object({
 
 export const createListAdvertisementResponseSchema = z.object({
   id: z.number().int(),
+  author: z.object({
+    id: z.string(),
+    name: z.string(),
+    bio: z.string().optional(),
+    is_advertiser: z.boolean(),
+  }),
   title: z.string(),
   description: z.string(),
   model: z.string(),
@@ -27,15 +33,15 @@ export const createListAdvertisementResponseSchema = z.object({
   fuel_type: z.string(),
   is_active: z.boolean(),
   price: z.number().int(),
-  authorId: z.string(),
   created_at: z.date(),
   updated_at: z.date(),
 });
 
-export const retrieveAdvertisementsSchema: z.ZodSchema<IAdvertisementResponseProps[]> = z.array(
-  createListAdvertisementResponseSchema
-);
+export const retrieveAdvertisementsSchema: z.ZodSchema<
+  IAdvertisementResponseProps[]
+> = z.array(createListAdvertisementResponseSchema);
 
-export const updateAdvertisementRequestSchema = createAdvertisementRequestSchema.partial();
+export const updateAdvertisementRequestSchema =
+  createAdvertisementRequestSchema.partial();
 
 export default createAdvertisementRequestSchema;
