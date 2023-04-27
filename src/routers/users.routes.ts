@@ -13,10 +13,22 @@ import {
 import createUserRequestSchema, {
   updateUserRequestSchama,
 } from "../schemas/user.schemas";
+import retrieveUniqueUserController from "../controllers/users/retrieveUniqueUser.controller";
+import ensureUUIDIsValidMiddleware from "../middlewares/ensureUUIDIsValid.middleware";
 
 const usersRoutes = Router();
 
 usersRoutes.get("", retrieveUsersController);
+usersRoutes.get(
+  "/profile",
+  validateTokenMiddleware,
+  retrieveUniqueUserController
+);
+usersRoutes.get(
+  "/:id",
+  ensureUUIDIsValidMiddleware,
+  retrieveUniqueUserController
+);
 usersRoutes.post(
   "",
   validateSchemasMiddleware(createUserRequestSchema),

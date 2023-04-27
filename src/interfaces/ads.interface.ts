@@ -19,7 +19,7 @@ export interface IAdsAuthorProps {
 
 export interface IAdvertisementResponseProps {
   id: number;
-  author: IAdsAuthorProps;
+  author?: IAdsAuthorProps;
   title: string;
   description: string;
   model: string;
