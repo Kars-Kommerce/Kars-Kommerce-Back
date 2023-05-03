@@ -16,6 +16,21 @@ const createAdvertisementRequestSchema = z.object({
   price: z.number().int(),
 });
 
+
+export const  commentResponseSchema = z.object({
+  id: z.number(),
+  text: z.string(),
+  author: z.object({
+    id:z.string(),
+    name: z.string(),
+  }),
+  created_at: z.date()
+})
+
+export const commentRequestSchema = z.object({
+  text: z.string()
+})
+
 export const createListAdvertisementResponseSchema = z.object({
   id: z.number().int(),
   author: z.object({
@@ -33,8 +48,10 @@ export const createListAdvertisementResponseSchema = z.object({
   fuel_type: z.string(),
   is_active: z.boolean(),
   price: z.number().int(),
+  comments:z.array(commentResponseSchema),
   created_at: z.date(),
   updated_at: z.date(),
+  
 });
 
 export const retrieveAdvertisementsSchema: z.ZodSchema<

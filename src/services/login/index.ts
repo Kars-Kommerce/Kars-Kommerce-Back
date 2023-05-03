@@ -15,7 +15,7 @@ const loginService = async ({ email, password }: ILoginProps) => {
 
   const compare = compareSync(password, user.password);
 
-  if (!compare) throw new AppError("User not found", 409);
+  if (!compare) throw new AppError("Incorret password", 409);
 
   const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY!, {
     expiresIn: "1h",

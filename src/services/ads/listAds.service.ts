@@ -14,6 +14,11 @@ const listAdsService = async (page = 1, pageSize = 12) => {
       author: {
         select: { id: true, name: true, bio: true, is_advertiser: true },
       },
+      comments:{
+        select: { id: true,text:true,
+        author:{select:{id:true,name:true}},
+        created_at:true }
+      }
     },
   });
 

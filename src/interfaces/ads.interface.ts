@@ -16,7 +16,15 @@ export interface IAdsAuthorProps {
   bio?: string;
   is_advertiser: boolean;
 }
-
+export interface IComments {
+  id: number;
+  text: string;
+  author: {
+    id: string;
+    name: string;
+  }
+  created_at: Date
+}
 export interface IAdvertisementResponseProps {
   id: number;
   author?: IAdsAuthorProps;
@@ -31,6 +39,7 @@ export interface IAdvertisementResponseProps {
   price: number;
   created_at: Date;
   updated_at: Date;
+  comments?: IComments[]
 }
 
 export interface IAdvertisementUpdateRequestProps
