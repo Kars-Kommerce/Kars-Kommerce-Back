@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import * as express from "express";
 
 declare global {
@@ -6,6 +7,7 @@ declare global {
       user: {
         [key: string!]: string | boolean;
       };
+      token: string;
     }
   }
 }

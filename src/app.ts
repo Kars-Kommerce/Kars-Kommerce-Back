@@ -7,6 +7,7 @@ import loginRoute from "./routers/login.route";
 import "dotenv/config";
 import adsRoutes from "./routers/ads.route";
 import addressRoutes from "./routers/address.route";
+import passwordRoutes from "./routers/resetPassword.route";
 
 export const prisma: PrismaClient = new PrismaClient();
 
@@ -17,6 +18,7 @@ app.use("/users", usersRoutes);
 app.use("/login", loginRoute);
 app.use("/ads", adsRoutes);
 app.use("/address", addressRoutes);
+app.use("/password-reset", passwordRoutes);
 
 // app.use(errorHandler);
 

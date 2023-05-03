@@ -22,6 +22,7 @@ model User {
     updated_at    DateTime @default(now()) @updatedAt
     ads           Advertisement[]
     address       Address?
+    password_reset_request PasswordResetRequest[]
 
     @@map("user")
 }
@@ -62,4 +63,15 @@ model Address {
     user          User     @relation(fields: [userId], references: [id])
 
     @@map("address")
+}
+
+
+model PasswordResetRequest {
+  id           Int      @id @default(autoincrement())
+  token        String   @unique
+  createdAt    DateTime @default(now())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id])
+
+  @@map("password_reset_request")
 }

@@ -9,11 +9,11 @@ const createAddressService = async (
   payload: IAddressRequestProps,
   userId: string | boolean
 ): Promise<IAddressResponseProps> => {
-  const newAd = await prisma.address.create({
+  const newAddress = await prisma.address.create({
     data: { ...payload, userId: userId as string },
   });
 
-  return createListAddressResponseSchema.parse(newAd);
+  return createListAddressResponseSchema.parse(newAddress);
 };
 
 export default createAddressService;
