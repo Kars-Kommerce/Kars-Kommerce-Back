@@ -1,3 +1,5 @@
+import { IAdvertisementResponseProps } from "./ads.interface";
+
 interface IUserProps {
   name?: string;
   username: string;
@@ -15,6 +17,7 @@ export interface IUserRequestProps extends IUserProps {
 
 export interface IUserResponseProps extends IUserProps {
   id: string;
+  ads: IAdvertisementResponseProps[];
   created_at: Date;
   updated_at: Date;
 }

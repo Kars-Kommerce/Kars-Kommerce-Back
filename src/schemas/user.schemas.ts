@@ -4,6 +4,7 @@ import {
   IUserResponseProps,
 } from "../interfaces/user.interfaces";
 import moment from "moment";
+import { createListAdvertisementResponseSchema } from "./ads.schema";
 
 const createUserRequestSchema = z.object({
   name: z.string().max(50, "Deve conter no máximo 50 caracteres"),
@@ -40,6 +41,7 @@ export const createListUserResponseSchema = z.object({
   is_advertiser: z.boolean(),
   created_at: z.date(),
   updated_at: z.date(),
+  ads: z.array(createListAdvertisementResponseSchema.omit({ author: true })),
 });
 
 export const retrieveUsersSchema: z.ZodSchema<IUserResponseProps[]> = z.array(
