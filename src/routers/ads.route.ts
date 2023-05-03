@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { validateSchemasMiddleware, validateTokenMiddleware } from "../middlewares";
-import createAdvertisementRequestSchema, { updateAdvertisementRequestSchema } from "../schemas/ads.schema";
+import createAdvertisementRequestSchema, { commentRequestSchema, updateAdvertisementRequestSchema } from "../schemas/ads.schema";
 import createAdController from "../controllers/ads/createAd.controller";
 import listAdsController from "../controllers/ads/listAds.controller";
 import updateAdController from "../controllers/ads/updateAd.controller";
 import deleteAdController from "../controllers/ads/deleteAd.controller";
 import isAdOwnerMiddleware from "../middlewares/isAdOwner.middleware";
+import advertsmentExistsMiddleware from "../middlewares/advertsmentExists.middleware";
+import createCommentController from "../controllers/comments/createComment.controller";
 
 
 
@@ -38,4 +40,11 @@ adsRoutes.delete(
   isAdOwnerMiddleware,
   deleteAdController
 );
+
+adsRoutes.post("/:id/comment",
+validateTokenMiddleware,
+validateSchemasMiddleware(commentRequestSchema),
+advertsmentExistsMiddleware,
+createCommentController
+)
 export default adsRoutes;
