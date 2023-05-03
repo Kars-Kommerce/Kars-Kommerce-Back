@@ -1,66 +1,84 @@
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 model User {
-    id            String   @id @default(uuid())
-    name          String?  @db.VarChar(50)
-    username      String   @unique @db.VarChar(30)
-    email         String   @unique
-    password      String   @db.VarChar(120)
-    cpf           String   @unique @db.VarChar(11)
-    cellphone     String   @unique @db.VarChar(11)
-    birth_date    DateTime @db.Date
-    bio           String?  @db.VarChar(255)
-    is_advertiser Boolean  @default(false)
-    created_at    DateTime @default(now())
-    updated_at    DateTime @default(now()) @updatedAt
-    ads           Advertisement[]
-    address       Address?
-    password_reset_request PasswordResetRequest[]
 
-    @@map("user")
+  id            String     @id @default(uuid())
+  name          String?    @db.VarChar(50)
+  username      String     @unique @db.VarChar(30)
+  email         String     @unique
+  password      String     @db.VarChar(120)
+  cpf           String     @unique @db.VarChar(11)
+  cellphone     String     @unique @db.VarChar(11)
+  birth_date    DateTime   @db.Date
+  bio           String?    @db.VarChar(255)
+  is_advertiser Boolean    @default(false)
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @default(now()) @updatedAt
+  ads           Advertisement[]
+  address       Address[]
+  password_reset_request PasswordResetRequest[]
+  comments      Comment[]
+
+
+  @@map("user")
 }
 
 model Advertisement {
-    id            Int   @id @default(autoincrement())
-    title         String  @db.VarChar(100)
-    description   String @db.VarChar(1000)
-    model         String @db.VarChar(100)
-    brand         String @db.VarChar(20)
-    year          Int 
-    fuel          Int
-    fuel_type     String @db.VarChar(20)
-    is_active     Boolean
-    price         Int  
-    created_at    DateTime @default(now())
-    updated_at    DateTime @default(now()) @updatedAt
-    authorId      String 
-    author        User    @relation(fields: [authorId], references: [id])
+  id            Int        @id @default(autoincrement())
+  title         String     @db.VarChar(100)
+  description   String     @db.VarChar(1000)
+  model         String     @db.VarChar(100)
+  brand         String     @db.VarChar(20)
+  year          Int 
+  fuel          Int
+  fuel_type     String     @db.VarChar(20)
+  is_active     Boolean
+  price         Int  
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @default(now()) @updatedAt
+  authorId      String     
+  author        User       @relation(fields: [authorId], references: [id])
+  comments      Comment[]
 
-
-   
-
-    @@map("advertisement")
+  @@map("advertisement")
 }
 
 model Address {
-    id            Int      @id @default(autoincrement())
-    cep           String   
-    state         String   @db.VarChar(20)
-    city          String   @db.VarChar(50)
-    street        String   @db.VarChar(100)
-    number        String      
-    complement    String   @db.VarChar(100)
-    created_at    DateTime @default(now())
-    updated_at    DateTime @default(now()) @updatedAt
-    userId        String   @unique
-    user          User     @relation(fields: [userId], references: [id])
+  id            Int      @id @default(autoincrement())
+  cep           String   
+  state         String   @db.VarChar(20)
+  city          String   @db.VarChar(50)
+  street        String   @db.VarChar(100)
+  number        String      
+  complement    String   @db.VarChar(100)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @default(now()) @updatedAt
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id])
+
+
+  @@map("address")
+}
+
+model Comment {
+  id           Int      @id @default(autoincrement())
+  text         String   @db.VarChar(500)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now()) @updatedAt
+  authorId     String   
+  author       User     @relation(fields: [authorId], references: [id])
+  advertisementId Int
+  advertisement Advertisement @relation(fields: [advertisementId], references: [id])
+  
+  @@map("comment")
+}
 
     @@map("address")
 }
@@ -75,3 +93,4 @@ model PasswordResetRequest {
 
   @@map("password_reset_request")
 }
+

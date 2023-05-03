@@ -15,6 +15,7 @@ const createAdService = async (
   });
 
   if (!user?.is_advertiser) {
+    console.log(user)
     throw new AppError("You not have permission for create advertisement", 409);
   }
 
@@ -23,7 +24,11 @@ const createAdService = async (
     include: {
       author: {
         select: { id: true, name: true, bio: true, is_advertiser: true },
-      },
+      },comments:{
+        select: { id: true,text:true,
+        author:{select:{id:true,name:true}},
+        created_at:true }
+      }
     },
   });
 
