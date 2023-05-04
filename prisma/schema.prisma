@@ -36,7 +36,8 @@ model Advertisement {
   description   String     @db.VarChar(1000)
   model         String     @db.VarChar(100)
   brand         String     @db.VarChar(20)
-  year          Int 
+  year          Int
+  kilometer     Int 
   fuel          Int
   fuel_type     String     @db.VarChar(20)
   is_active     Boolean
@@ -45,7 +46,9 @@ model Advertisement {
   updated_at    DateTime   @default(now()) @updatedAt
   authorId      String     
   author        User       @relation(fields: [authorId], references: [id])
-  comments      Comment[]
+  comments      Comment[] 
+  cover_image  String
+  galery       Galery[] 
 
   @@map("advertisement")
 }
@@ -75,11 +78,10 @@ model Comment {
   authorId     String   
   author       User     @relation(fields: [authorId], references: [id])
   advertisementId Int
-  advertisement Advertisement @relation(fields: [advertisementId], references: [id])
+  advertisement Advertisement @relation(fields: [advertisementId], references: [id], onDelete: Cascade)
   
   @@map("comment")
 }
-
 
 model PasswordResetRequest {
   id           Int      @id @default(autoincrement())
@@ -91,3 +93,10 @@ model PasswordResetRequest {
   @@map("password_reset_request")
 }
 
+model Galery {
+  id Int @id @default(autoincrement())
+  image String
+  advertisementId Int
+  advertisement Advertisement @relation(fields: [advertisementId], references: [id], onDelete: Cascade)
+  @@map("galery")
+}

@@ -18,7 +18,8 @@ const listAdsService = async (page = 1, pageSize = 12) => {
         select: { id: true,text:true,
         author:{select:{id:true,name:true}},
         created_at:true }
-      }
+      },
+      galery: {select: { image: true}}
     },
   });
 
