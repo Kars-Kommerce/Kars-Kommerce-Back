@@ -1,12 +1,8 @@
 import { Router } from "express";
-
-import {
-  validateSchemasMiddleware,
-  validateTokenMiddleware,
-} from "../middlewares";
-
-import { validateSchemasMiddleware, validateTokenMiddleware } from "../middlewares";
-import createAdvertisementRequestSchema, { commentRequestSchema, updateAdvertisementRequestSchema } from "../schemas/ads.schema";
+import createAdvertisementRequestSchema, {
+  commentRequestSchema,
+  updateAdvertisementRequestSchema,
+} from "../schemas/ads.schema";
 
 import createAdController from "../controllers/ads/createAd.controller";
 import listAdsController from "../controllers/ads/listAds.controller";
@@ -18,10 +14,10 @@ import listUniqueAdsController from "../controllers/ads/listUniqueAds.controller
 
 import advertsmentExistsMiddleware from "../middlewares/advertsmentExists.middleware";
 import createCommentController from "../controllers/comments/createComment.controller";
-
-
-
-
+import {
+  validateSchemasMiddleware,
+  validateTokenMiddleware,
+} from "../middlewares";
 
 const adsRoutes = Router();
 
@@ -51,10 +47,11 @@ adsRoutes.delete(
   deleteAdController
 );
 
-adsRoutes.post("/:id/comment",
-validateTokenMiddleware,
-validateSchemasMiddleware(commentRequestSchema),
-advertsmentExistsMiddleware,
-createCommentController
-)
+adsRoutes.post(
+  "/:id/comment",
+  validateTokenMiddleware,
+  validateSchemasMiddleware(commentRequestSchema),
+  advertsmentExistsMiddleware,
+  createCommentController
+);
 export default adsRoutes;

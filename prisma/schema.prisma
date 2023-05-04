@@ -80,9 +80,6 @@ model Comment {
   @@map("comment")
 }
 
-    @@map("address")
-}
-
 
 model PasswordResetRequest {
   id           Int      @id @default(autoincrement())
