@@ -4,8 +4,6 @@ import {
   validateSchemasMiddleware,
   validateTokenMiddleware,
 } from "../middlewares";
-
-import { validateSchemasMiddleware, validateTokenMiddleware } from "../middlewares";
 import createAdvertisementRequestSchema, { commentRequestSchema, updateAdvertisementRequestSchema } from "../schemas/ads.schema";
 
 import createAdController from "../controllers/ads/createAd.controller";

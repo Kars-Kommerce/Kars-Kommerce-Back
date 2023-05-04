@@ -4,10 +4,12 @@ export interface IAdvertisementRequestProps {
   model: string;
   brand: string;
   year: number;
+  kilometer: number;
   fuel: number;
   fuel_type: string;
   is_active: boolean;
   price: number;
+  cover_image: string;
 }
 
 export interface IAdsAuthorProps {
@@ -33,6 +35,7 @@ export interface IAdvertisementResponseProps {
   model: string;
   brand: string;
   year: number;
+  kilometer: number;
   fuel: number;
   fuel_type: string;
   is_active: boolean;
@@ -40,6 +43,8 @@ export interface IAdvertisementResponseProps {
   created_at: Date;
   updated_at: Date;
   comments?: IComments[]
+  cover_image: string;
+  galery?: object[];
 }
 
 export interface IAdvertisementUpdateRequestProps
