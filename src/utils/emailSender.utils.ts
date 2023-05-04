@@ -17,7 +17,7 @@ export async function sendEmail(token: string, email: string) {
     from: process.env.SMTP_USER,
     to: email,
     subject: "Password Reset Request",
-    text: `To reset your password, please click on the following link: http://localhost:3001/password-reset/${token}`,
+    text: `To reset your password, please click on the following link: http://127.0.0.1:5173/send-password/${token}`,
   };
 
   await transporter
