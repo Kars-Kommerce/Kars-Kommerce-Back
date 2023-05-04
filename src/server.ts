@@ -5,7 +5,9 @@ import { prisma } from "./app";
   await prisma
     .$connect()
     .then(() =>
-      app.listen(3001, () => console.log("Server is running on port 3001 :D"))
+      app.listen(3001, () =>
+        console.log("Server running in url: localhost:3001")
+      )
     )
     .catch((err) => console.error(err));
 })();
