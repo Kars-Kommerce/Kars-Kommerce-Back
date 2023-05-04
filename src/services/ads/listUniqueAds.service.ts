@@ -10,6 +10,13 @@ const listUniqueAdsService = async (findId: number) => {
       author: {
         select: { id: true, name: true, bio: true, is_advertiser: true },
       },
+      comments:{
+        select: { id: true,text:true,
+        author:{select:{id:true,name:true}},
+        created_at:true }
+      },
+      galery: {select: { image: true}}
+      
     },
   });
   if (!ads) {

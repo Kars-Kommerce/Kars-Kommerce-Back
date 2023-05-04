@@ -8,6 +8,7 @@ import { createListAdvertisementResponseSchema } from "../../schemas/ads.schema"
 
 const createAdService = async (
   payload: IAdvertisementRequestProps,
+  galery:string[],
   userId: string
 ): Promise<IAdvertisementResponseProps> => {
   const user = await prisma.user.findUnique({
@@ -17,6 +18,9 @@ const createAdService = async (
   if (!user?.is_advertiser) {
     console.log(user)
     throw new AppError("You not have permission for create advertisement", 409);
+  }
+  if (galery.length > 6) {
+    throw new AppError("galery have more than 6 images", 400);
   }
 
   const newAd = await prisma.advertisement.create({
@@ -28,9 +32,16 @@ const createAdService = async (
         select: { id: true,text:true,
         author:{select:{id:true,name:true}},
         created_at:true }
-      }
+      },
+      galery: {select: { image: true}}
+      
     },
   });
+
+  galery.forEach( async (image) => {
+    await prisma.galery.create({data:{image: image, advertisementId: newAd.id}})
+  })
+
 
   return createListAdvertisementResponseSchema.parse(newAd);
 };
