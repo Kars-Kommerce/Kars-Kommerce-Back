@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  checkToken,
   createPasswordResetRequest,
   resetPassword,
 } from "../controllers/passwordReset/passwordReset.controller";
@@ -14,6 +15,7 @@ passwordRoutes.post(
   ensureUserExistisMiddleware,
   createPasswordResetRequest
 );
+passwordRoutes.get("/:token", checkToken);
 passwordRoutes.put("/:token", resetPassword);
 
 export default passwordRoutes;
