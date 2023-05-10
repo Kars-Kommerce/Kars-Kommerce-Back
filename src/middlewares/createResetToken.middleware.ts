@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
+import crypto from "crypto";
 
 const RESET_KEY = "process.env.RESET_KEY";
 
@@ -8,11 +9,14 @@ const createResetTokenMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = jwt.sign({ email: req.body }, RESET_KEY!, {
-    expiresIn: "5m",
-  });
+  const emailForHash = req.body.email + Date.now();
 
-  req.token = token;
+  const tokenEncoded = crypto
+    .createHash("md5")
+    .update(emailForHash)
+    .digest("hex");
+
+  req.token = tokenEncoded;
 
   return next();
 };
