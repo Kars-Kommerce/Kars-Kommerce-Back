@@ -6,7 +6,7 @@ interface IUserProps {
   email: string;
   cpf: string;
   cellphone: string;
-  birth_date: string | Date;
+  birth_date: Date;
   bio?: string | null;
   is_advertiser: boolean;
 }

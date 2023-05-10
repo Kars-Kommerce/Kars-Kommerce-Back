@@ -48,9 +48,10 @@ export const retrieveUsersSchema: z.ZodSchema<IUserResponseProps[]> = z.array(
   createListUserResponseSchema
 );
 
-export const updateUserRequestSchama = createUserRequestSchema
+export const updateUserRequestSchama = createListUserResponseSchema
   .omit({
     cpf: true,
+    ads: true,
   })
   .partial();
 
