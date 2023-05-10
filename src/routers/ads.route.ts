@@ -4,7 +4,10 @@ import {
   validateSchemasMiddleware,
   validateTokenMiddleware,
 } from "../middlewares";
-import createAdvertisementRequestSchema, { commentRequestSchema, updateAdvertisementRequestSchema } from "../schemas/ads.schema";
+import createAdvertisementRequestSchema, {
+  commentRequestSchema,
+  updateAdvertisementRequestSchema,
+} from "../schemas/ads.schema";
 
 import createAdController from "../controllers/ads/createAd.controller";
 import listAdsController from "../controllers/ads/listAds.controller";
@@ -16,7 +19,6 @@ import listUniqueAdsController from "../controllers/ads/listUniqueAds.controller
 
 import advertsmentExistsMiddleware from "../middlewares/advertsmentExists.middleware";
 import createCommentController from "../controllers/comments/createComment.controller";
-
 
 const adsRoutes = Router();
 
