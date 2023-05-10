@@ -4,7 +4,7 @@ export interface IAddressRequestProps {
   city: string;
   street: string;
   number: string;
-  complement: string;
+  complement: string| null| undefined;
 }
 
 export interface IAddressResponseProps {
@@ -14,7 +14,7 @@ export interface IAddressResponseProps {
   city: string;
   street: string;
   number: string;
-  complement: string;
+  complement: string| null| undefined;
   userId: string;
   created_at: Date;
   updated_at: Date;
