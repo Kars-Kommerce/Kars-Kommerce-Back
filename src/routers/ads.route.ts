@@ -16,10 +16,7 @@ import listUniqueAdsController from "../controllers/ads/listUniqueAds.controller
 
 import advertsmentExistsMiddleware from "../middlewares/advertsmentExists.middleware";
 import createCommentController from "../controllers/comments/createComment.controller";
-import {
-  validateSchemasMiddleware,
-  validateTokenMiddleware,
-} from "../middlewares";
+
 
 const adsRoutes = Router();
 

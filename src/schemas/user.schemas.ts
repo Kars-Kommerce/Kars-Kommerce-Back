@@ -5,6 +5,8 @@ import {
 } from "../interfaces/user.interfaces";
 import moment from "moment";
 import { createListAdvertisementResponseSchema } from "./ads.schema";
+import createAddressRequestSchema from "./address.schema";
+import {createListAddressResponseSchema} from "./address.schema"
 
 const createUserRequestSchema = z.object({
   name: z.string().max(50, "Deve conter no máximo 50 caracteres"),
@@ -27,6 +29,7 @@ const createUserRequestSchema = z.object({
     .refine((val) => moment(val).isValid(), "Insira uma data válida"),
   bio: z.string().max(500).optional().nullable(),
   is_advertiser: z.boolean().optional(),
+  address: createAddressRequestSchema
 });
 
 export const createListUserResponseSchema = z.object({
@@ -41,6 +44,7 @@ export const createListUserResponseSchema = z.object({
   is_advertiser: z.boolean(),
   created_at: z.date(),
   updated_at: z.date(),
+  address: createListAddressResponseSchema.optional().nullable(),
   ads: z.array(createListAdvertisementResponseSchema.omit({ author: true })),
 });
 
