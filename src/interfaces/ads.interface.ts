@@ -5,10 +5,10 @@ export interface IAdvertisementRequestProps {
   brand: string;
   year: number;
   kilometer: number;
-  fuel: number;
-  fuel_type: string;
+  fuel: string;
   is_active: boolean;
   price: number;
+  fipe: number;
   cover_image: string;
 }
 
@@ -24,8 +24,8 @@ export interface IComments {
   author: {
     id: string;
     name: string;
-  }
-  created_at: Date
+  };
+  created_at: Date;
 }
 export interface IAdvertisementResponseProps {
   id: number;
@@ -36,13 +36,13 @@ export interface IAdvertisementResponseProps {
   brand: string;
   year: number;
   kilometer: number;
-  fuel: number;
-  fuel_type: string;
+  fuel: string;
   is_active: boolean;
   price: number;
+  fipe: number;
   created_at: Date;
   updated_at: Date;
-  comments?: IComments[]
+  comments?: IComments[];
   cover_image: string;
   galery?: object[];
 }
