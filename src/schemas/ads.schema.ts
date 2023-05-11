@@ -10,29 +10,28 @@ const createAdvertisementRequestSchema = z.object({
   model: z.string().max(100, "Deve conter no máximo 100 caracteres"),
   brand: z.string().max(20, "Deve conter no máximo 20 caracteres"),
   year: z.number().int(),
+  fuel: z.string().max(20, "Deve conter no máximo 20 caracteres"),
   kilometer: z.number().int(),
-  fuel: z.number().int(),
-  fuel_type: z.string().max(20, "Deve conter no máximo 20 caracteres"),
   is_active: z.boolean(),
   price: z.number().int(),
+  fipe: z.number().int(),
   cover_image: z.string(),
-  galery: z.array(z.string())
+  galery: z.array(z.string()),
 });
 
-
-export const  commentResponseSchema = z.object({
+export const commentResponseSchema = z.object({
   id: z.number(),
   text: z.string(),
   author: z.object({
-    id:z.string(),
+    id: z.string(),
     name: z.string(),
   }),
-  created_at: z.date()
-})
+  created_at: z.date(),
+});
 
 export const commentRequestSchema = z.object({
-  text: z.string()
-})
+  text: z.string(),
+});
 
 export const createListAdvertisementResponseSchema = z.object({
   id: z.number().int(),
@@ -47,17 +46,16 @@ export const createListAdvertisementResponseSchema = z.object({
   model: z.string(),
   brand: z.string(),
   year: z.number().int(),
+  fuel: z.string(),
   kilometer: z.number().int(),
-  fuel: z.number().int(),
-  fuel_type: z.string(),
   is_active: z.boolean(),
   price: z.number().int(),
-  comments:z.array(commentResponseSchema),
+  fipe: z.number().int(),
+  comments: z.array(commentResponseSchema),
   cover_image: z.string(),
-  galery: z.array(z.object({image: z.string()})),
+  galery: z.array(z.object({ image: z.string() })),
   created_at: z.date(),
   updated_at: z.date(),
-  
 });
 
 export const retrieveAdvertisementsSchema: z.ZodSchema<

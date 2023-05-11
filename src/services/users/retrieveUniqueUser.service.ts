@@ -7,7 +7,8 @@ const retrieveUniqueUserService = async (userId: string) => {
       id: userId,
     },
     include: {
-      ads: { include: { author: true,galery:true,comments:true } }
+      ads: { include: { author: true, galery: true, comments: true } },
+      address: true,
     },
   });
 
