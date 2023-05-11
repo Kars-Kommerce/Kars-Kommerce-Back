@@ -1,7 +1,7 @@
 import { PrismaClientKnownRequestError } from "../../errors";
 import { prisma } from "../../app";
 import { IUserUpdateRequestProps } from "../../interfaces/user.interfaces";
-import { createListUserResponseSchema } from "../../schemas/user.schemas";
+import { updateUserRequestSchama } from "../../schemas/user.schemas";
 import AppError from "../../errors";
 
 const updateUserService = async (
@@ -14,7 +14,7 @@ const updateUserService = async (
       data: { ...payload },
     });
 
-    const parsedData = createListUserResponseSchema.parseAsync(user);
+    const parsedData = updateUserRequestSchama.parseAsync(user);
 
     return parsedData;
   } catch (err: unknown) {
